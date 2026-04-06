@@ -62,11 +62,3 @@ detect_deac:
 
 % c-sdk {
 %}
-
-
-
-
-
-% c-sdk {
-
-%}
