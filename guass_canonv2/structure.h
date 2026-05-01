@@ -9,7 +9,7 @@ struct coil_handler_struc {  // declaration de la structure contenant les parame
   uint photopin;
   uint mosfetpin;  // ou juste led d'affichage
   uint timebeforetrig = 0;
-  uint maxtime = 10 * 1000 * 1000;
+  uint maxtime = 100 * 1000 * 1000; // in ns
 };
 
 struct data_time_s {

@@ -2,7 +2,7 @@
 #include "structure.h"
 #include "pio_code.h"
 
-#define DEBUG 0
+#define DEBUG 1
 
 int Green_pin = 29;  // pin de la led verte
 

@@ -11,10 +11,10 @@
 intit:
     wait   1 pin, 0
     set    pins, 1
-    set    y, 0            side 1
-    mov    y, !y
+    pull block
+    out y, 32
 loop:
-    in     pins, 1
+    in     pins, 1 side 1
     mov    x, isr
     jmp    !x, stop
     jmp    y--, loop
@@ -25,6 +25,9 @@ stop:
     irq    nowait 0
 end:
     jmp end
+
+
+
 
 .program Timer
     set    y, 0
