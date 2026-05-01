@@ -9,6 +9,7 @@
 ; Repeatedly get one word of data from the TX FIFO, stalling when the FIFO is
 ; empty. Write the least significant bit to the OUT pin group.
 intit:
+
     wait   1 pin, 0
     set    pins, 1
     pull block
@@ -19,20 +20,24 @@ loop:
     jmp    !x, stop
     jmp    y--, loop
 stop:
+
     set    pins, 0         side 0
     mov    isr, y
     push   noblock
     irq    nowait 0
 end:
+
     jmp end
 
 
 
 
 .program Timer
+
     set    y, 0
     mov    y, !y
 timer_loop:
+
     jmp  pin detect [2]
     jmp y-- timer_loop 
 
@@ -42,10 +47,12 @@ timer_loop:
     jmp timer_loop
 
 detect:
+
     irq 2
     mov    isr, y
     push   noblock
 timer_loop_deac:
+
     in     pins, 1
     mov    x, isr
     jmp    !x, detect_deac
@@ -57,6 +64,7 @@ timer_loop_deac:
     jmp timer_loop_deac
 
 detect_deac:
+
     irq 3
     mov    isr, y
     push   noblock
