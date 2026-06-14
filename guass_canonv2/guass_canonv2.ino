@@ -2,7 +2,7 @@
 #include "structure.h"
 #include "pio_code.h"
 
-#define DEBUG 1
+#define DEBUG 0
 
 int Green_pin = 29;  // pin de la led verte
 
@@ -66,7 +66,7 @@ void loop() {
     }
     shutdown_coil(i);
     gpio_put(Green_pin, LOW);
-    data_time[i].l_pulse = (uint64_t)(0xFFFFFFFF - pio_sm_get(Coil_sm.pio, Coil_sm.sm))* 20ULL;
+    data_time[i].l_pulse = (uint64_t)(Coil_parameter[i].maxtime - ((uint64_t)pio_sm_get(Coil_sm.pio, Coil_sm.sm)* 20ULL));
 #if DEBUG
     Serial.println(data_time[i].l_pulse);
 #endif

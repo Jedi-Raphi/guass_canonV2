@@ -62,8 +62,8 @@ void init_coil(uint coil_to_init) {
   pio_sm_init(Coil_sm.pio, Coil_sm.sm, Coil_sm.offset, &Coil_sm.conf);  // aplique la nouvelle config et  vide l'isr et L'osr comme un pio_sm_restart
   pio_sm_clkdiv_restart(Coil_sm.pio, Coil_sm.sm);                       // resynchronise l'horloge interne du pio
   pio_sm_clear_fifos(Coil_sm.pio, Coil_sm.sm);                          // vide le fifo
-  pio_sm_put_blocking(Coil_sm.pio, Coil_sm.sm, (Coil_parameter[coil_to_init].maxtime /5));
-  Serial.println(Coil_parameter[coil_to_init].maxtime);
+  pio_sm_put_blocking(Coil_sm.pio, Coil_sm.sm, ((uint32_t)(Coil_parameter[coil_to_init].maxtime /20)));
+  //Serial.println(Coil_parameter[coil_to_init].maxtime);
   pio_sm_set_enabled(Coil_sm.pio, Coil_sm.sm, true);                    //demare la SM
 }
 

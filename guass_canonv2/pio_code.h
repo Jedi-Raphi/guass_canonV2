@@ -13,30 +13,31 @@
 // ------------ //
 
 #define Coil_handler_wrap_target 0
-#define Coil_handler_wrap 12
+#define Coil_handler_wrap 13
 
 static const uint16_t Coil_handler_program_instructions[] = {
             //     .wrap_target
-    0x20a0, //  0: wait   1 pin, 0                   
-    0xe001, //  1: set    pins, 1                    
-    0x80a0, //  2: pull   block                      
-    0x6040, //  3: out    y, 32                      
-    0x5801, //  4: in     pins, 1         side 1     
+    0x80a0, //  0: pull   block                      
+    0x6040, //  1: out    y, 32                      
+    0x20a0, //  2: wait   1 pin, 0                   
+    0xf801, //  3: set    pins, 1         side 1     
+    0x4001, //  4: in     pins, 1                    
     0xa026, //  5: mov    x, isr                     
-    0x0028, //  6: jmp    !x, 8                      
+    0x0029, //  6: jmp    !x, 9                      
     0x0084, //  7: jmp    y--, 4                     
-    0xf000, //  8: set    pins, 0         side 0     
-    0xa0c2, //  9: mov    isr, y                     
-    0x8000, // 10: push   noblock                    
-    0xc000, // 11: irq    nowait 0                   
-    0x000c, // 12: jmp    12                         
+    0xe040, //  8: set    y, 0                       
+    0xf000, //  9: set    pins, 0         side 0     
+    0xa0c2, // 10: mov    isr, y                     
+    0x8000, // 11: push   noblock                    
+    0xc000, // 12: irq    nowait 0                   
+    0x000d, // 13: jmp    13                         
             //     .wrap
 };
 
 #if !PICO_NO_HARDWARE
 static const struct pio_program Coil_handler_program = {
     .instructions = Coil_handler_program_instructions,
-    .length = 13,
+    .length = 14,
     .origin = -1,
 };
 

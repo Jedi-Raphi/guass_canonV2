@@ -7,18 +7,20 @@
 .program Coil_handler
 .side_set 1 opt
 ; Repeatedly get one word of data from the TX FIFO, stalling when the FIFO is
-; empty. Write the least significant bit to the OUT pin group.
+; empty. Write the least significant bit to the OUT p                                                                                                                           in group.
 intit:
-
-    wait   1 pin, 0
-    set    pins, 1
     pull block
     out y, 32
+    wait   1 pin, 0
+    set    pins, 1 side 1
+
 loop:
-    in     pins, 1 side 1
+    in     pins, 1 
     mov    x, isr
     jmp    !x, stop
     jmp    y--, loop
+    
+    set y, 0
 stop:
 
     set    pins, 0         side 0
