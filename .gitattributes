@@ -1,2 +1,2 @@
 guass_canonv2/pio.md linguist-language=Assembly
-"gausgun analyser.py" -linguist-vendored
+"gausgun analyzer.py" linguist-vendored
